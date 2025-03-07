@@ -3,6 +3,7 @@ const cors = require('cors');
 const serverless = require('serverless-http'); // Tambahkan ini
 
 const app = express();
+const PORT = process.env.PORT || 4000;
 
 // Middleware CORS untuk mengizinkan semua origin
 app.use(cors({
@@ -24,4 +25,7 @@ const storeRoutes = require('../routes/storeRoutes');
 app.use('/store', storeRoutes);
 
 // Jangan gunakan `app.listen`, export handler ini
-module.exports = serverless(app);
+// module.exports = serverless(app);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

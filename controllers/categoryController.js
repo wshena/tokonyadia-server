@@ -1,8 +1,10 @@
+const path = require('path');
 const readJSONFile = require('../utils/fileReader');
 
 const getCategories = async (req, res) => {
   try {
-    const categories = await readJSONFile('store/categories.json');
+    const filePath = path.join(__dirname, '../store/categories.json');
+    const categories = await readJSONFile(filePath);
     const categoryId = req.query.id;
     
     if (categoryId) {

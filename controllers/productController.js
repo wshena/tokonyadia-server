@@ -1,8 +1,10 @@
+const path = require('path');
 const readJSONFile = require('../utils/fileReader');
 
 const getProducts = async (req, res) => {
   try {
-    const products = await readJSONFile('store/products.json');
+    const filePath = path.join(__dirname, '../store/products.json');
+    const products = await readJSONFile(filePath);
     const productId = req.query.id;
     const productName = req.query.name;
 

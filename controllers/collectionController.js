@@ -1,8 +1,10 @@
+const path = require('path');
 const readJSONFile = require('../utils/fileReader');
 
 const getCollections = async (req, res) => {
   try {
-    const collections = await readJSONFile('store/collections.json');
+    const filePath = path.join(__dirname, '../store/collections.json');
+    const collections = await readJSONFile(filePath);
     const collectionId = req.query.id;
     
     if (collectionId) {
