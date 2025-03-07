@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "store/categories.json",
+          "store/collections.json",
+          "store/products.json",
+          "store/orders.json"
+        ]
+      }
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/store/:path*",
+      "destination": "/api/server.js"
+    }
+  ]
+}

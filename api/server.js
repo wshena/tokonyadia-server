@@ -1,9 +1,10 @@
 const express = require('express');
-const cors = require('cors'); // Import CORS
-const app = express();
-const port = 4000;
+const cors = require('cors');
+const serverless = require('serverless-http'); // Tambahkan ini
 
-// 🔹 Middleware CORS untuk mengizinkan semua origin
+const app = express();
+
+// Middleware CORS untuk mengizinkan semua origin
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -11,7 +12,7 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json())
+app.use(express.json());
 
 // Global route
 app.get('/', (req, res) => {
@@ -22,6 +23,5 @@ app.get('/', (req, res) => {
 const storeRoutes = require('../routes/storeRoutes');
 app.use('/store', storeRoutes);
 
-app.listen(port, () => {
-  console.log(`Server listening on http://localhost:${port}`);
-});
+// Jangan gunakan `app.listen`, export handler ini
+module.exports = serverless(app);
