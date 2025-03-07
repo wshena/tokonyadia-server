@@ -17,7 +17,7 @@
   "rewrites": [
     {
       "source": "/store/:path*",
-      "destination": "/api/server.js"
+      "destination": "/api/server"
     }
   ]
 }
